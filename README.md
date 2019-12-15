@@ -27,7 +27,7 @@ From **Mongo Shell** you can add a user with root roles using this command:
 > db.createUser({
     user: "<root user>",
     pwd: "<root password>",
-    roles: roles["userAdminAnyDatabase", "dbAdminAnyDatabase", "readWriteAnyDatabase"]
+    roles: ["userAdminAnyDatabase", "dbAdminAnyDatabase", "readWriteAnyDatabase"]
     
    })
 ```
