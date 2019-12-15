@@ -31,3 +31,10 @@ From **Mongo Shell** you can add a user with root roles using this command:
     
    })
 ```
+
+# Enable PreCommit Githooks
+You can enable **PreCommit Githooks** using this commands
+```
+cp git-hooks/pre-commit .git/hooks/pre-commit
+chmod +x .git/hooks/pre-commit
+```
