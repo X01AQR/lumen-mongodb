@@ -19,3 +19,15 @@ DB_DATABASE=<Your DB>
 DB_USERNAME=<DB name>
 DB_PASSWORD=<DB Password>
 ```
+
+# Setup MongoDB root user
+From **Mongo Shell** you can add a user with root roles using this command:
+```
+> use admin
+> db.createUser({
+    user: "<root user>",
+    pwd: "<root password>",
+    roles: roles: ["userAdminAnyDatabase", "dbAdminAnyDatabase", "readWriteAnyDatabase"]
+    
+   })
+```
