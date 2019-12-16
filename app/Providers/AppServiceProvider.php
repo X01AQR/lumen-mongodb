@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Console\Commands\ModelMakeCommand;
 
 class AppServiceProvider extends ServiceProvider
 {
