@@ -1,14 +1,31 @@
 <?php
 
-abstract class TestCase extends Laravel\Lumen\Testing\TestCase
+use Laravel\Lumen\Testing\DatabaseMigrations;
+use Laravel\Lumen\Testing\DatabaseTransactions;
+use Laravel\Lumen\Testing\TestCase as BaseTestCase;
+use Faker\Factory as Faker;
+
+abstract class TestCase extends BaseTestCase
 {
+    use DatabaseMigrations, DatabaseTransactions;
+
+    protected $faker;
+
     /**
-     * Creates the application.
-     *
-     * @return \Laravel\Lumen\Application
+     * Set up the test
      */
-    public function createApplication()
+    public function setUp()
     {
-        return require __DIR__.'/../bootstrap/app.php';
+        parent::setUp();
+        $this->faker = Faker::create();
+    }
+
+    /**
+     * Reset the migrations
+     */
+    public function tearDown()
+    {
+        $this->artisan('migrate:reset');
+        parent::tearDown();
     }
 }
