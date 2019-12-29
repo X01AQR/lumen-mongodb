@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class ExampleMiddleware
+class AuthorizationMiddleware
 {
     /**
      * Handle an incoming request.
@@ -13,8 +13,12 @@ class ExampleMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, ...$roles)
     {
+        if (!in_array($request->header('X-Token-Scopes', 'guest'), $roles)) {
+            return response('Unauthorized.', 401);
+        }
+
         return $next($request);
     }
 }
