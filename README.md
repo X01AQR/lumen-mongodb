@@ -5,7 +5,9 @@ Lumen Project with MongoDB Configration
 In your root folder use the command to clone the repository:
 ```
 git clone https://github.com/3bdullahg97/lumen-mongodb.git
+composer install
 ```
+
 Create a `.env` file to configure your project using this command
 ```
 cp .env.example .env
@@ -30,11 +32,4 @@ From **Mongo Shell** you can add a user with root roles using this command:
     roles: ["userAdminAnyDatabase", "dbAdminAnyDatabase", "readWriteAnyDatabase"]
     
    })
-```
-
-# Enable PreCommit Githooks
-You can enable **PreCommit Githooks** using this commands
-```
-cp git-hooks/pre-commit .git/hooks/pre-commit
-chmod +x .git/hooks/pre-commit
 ```
