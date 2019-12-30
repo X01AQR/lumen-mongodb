@@ -5,6 +5,9 @@ Lumen Project with MongoDB Configration
 In your root folder use the command to clone the repository:
 ```
 git clone https://github.com/3bdullahg97/lumen-mongodb.git
+```
+Install the project packages using composer
+```
 composer install
 ```
 
