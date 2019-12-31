@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Lcobucci\JWT\Parser;
 
 class AuthorizationMiddleware
 {
@@ -15,10 +16,16 @@ class AuthorizationMiddleware
      */
     public function handle($request, Closure $next, ...$roles)
     {
-        if (!in_array($request->header('X-Token-Scopes', 'guest'), $roles)) {
-            return response('Unauthorized.', 401);
+        if ($request->hasHeader('Authorization')) {
+            $token = explode(' ', $request->header('Authorization'))[1];
+            $parser = new Parser();
+            $jwt = $parser->parse($token);
+
+            if (in_array($jwt->getClaim('user_role'), $roles)) {
+                return $next($request);
+            }
         }
 
-        return $next($request);
+        return response('Unauthorized', 401);
     }
 }
